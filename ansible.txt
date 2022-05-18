@@ -1,0 +1,26 @@
+ansible commands:
+-----------------
+adhoc command to do manual patch --->ansible <alias name> -a "sudo apt-get update"
+using modules--->ansible <alias name> -m apt -a "name=ngnix state=present" -b   (-b when it permission denies  -become)
+To run the playbook  ----->ansible-playbook -v <playbookname>.yml 
+
+In master's /etc/hosts file, add slave hostips like below:
+[servers]   ---groupname
+server1 ansible_host=<ip> ansible_user=ubuntu ansible_port=22
+server1   ---alias name
+
+
+basic adhoc:
+ansible <> -a uptime    --uptime
+ansible <> -a "df -h"
+ansible <> -m shell -a "cat /etc/passwd|grep -i vagrant" -s --ask-sudo-pass    --run as root user ask for passwd
+ansible server1 -m file -a 'path=/var/tmp/ansible_test.txt state=touch content=sss'
+
+Ansible roles:
+-------------
+ansible-galaxy init myrole  -->myrole dir will be created
+diff b/w default and vars  
+-->vars, we can store variables which is changing as per the user or etc (dynamic)
+--->default, storing variables will be static
+diff b/w file and template dir
+-->like j2. extension in template--things likes files  which are changing will kee under template which are not changing will keep in files
